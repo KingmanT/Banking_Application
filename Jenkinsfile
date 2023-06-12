@@ -25,7 +25,7 @@ pipeline {
        steps {
          withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('D4_Terraform') {
+                            dir('Demo_Terraform') {
                               sh 'terraform init' 
                             }
          }
@@ -35,7 +35,7 @@ pipeline {
         steps {
           withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('D4_Terraform') {
+                            dir('Demo_Terraform') {
                               sh 'terraform plan -out plan.tfplan -var="aws_access_key=${aws_access_key}" -var="aws_secret_key=${aws_secret_key}"' 
                             }
           }
@@ -45,7 +45,7 @@ pipeline {
         steps {
           withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('D4_Terraform') {
+                            dir('Demo_Terraform') {
                               sh 'terraform apply plan.tfplan' 
                             }
                         }

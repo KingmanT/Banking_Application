@@ -1,3 +1,6 @@
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+
 terraform {
   required_providers {
     aws ={
@@ -9,12 +12,8 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile = var.profile_creds
 }
 provider "aws" {
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile = var.profile_creds
   region = "us-west-1"
   alias = "West"
 }

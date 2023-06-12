@@ -127,8 +127,14 @@ resource "aws_security_group" "Deployment_Application_instance_East_SG" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-
+  
+    ingress {
+    from_port = 5000
+    to_port = 5000
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
+    
   ingress {
     from_port = 80
     to_port = 80
@@ -167,8 +173,15 @@ resource "aws_security_group" "Deployment_Application_instance_West_SG" {
     to_port = 80
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-
   }
+  
+  ingress {
+    from_port = 5000
+    to_port = 5000
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
   egress {
     from_port = 0
     to_port = 0
@@ -178,44 +191,6 @@ resource "aws_security_group" "Deployment_Application_instance_West_SG" {
 
   tags = {
     "Name" : "Application_SGW"
-    "Terraform" : "true"
-  }
-  
-}
-resource "aws_security_group" "Deployment_Jenkins_instance_East_SG" {
-  name        = "ssh-access&Jenkins"
-  description = "open ssh traffic and jenkins ports"
-  vpc_id = aws_vpc.Deployment-vpc_East.id
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-  ingress {
-    from_port = 8080
-    to_port = 8080
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    "Name" : "Jenkins_SG"
     "Terraform" : "true"
   }
   
@@ -344,16 +319,6 @@ resource "aws_instance" "appInstance_West2" {
     Name = "appInstance_West-2"
   }
   user_data = "${file("config.sh")}"
-}
-resource "aws_instance" "Deployment_Jenkins_Instance" {
-  ami           = "ami-0c94855ba95c71c99"
-  instance_type = "t2.medium"
-  subnet_id     = aws_subnet.public-subnet-1_East.id
-  vpc_security_group_ids = [aws_security_group.Deployment_Jenkins_instance_East_SG.id]
-  user_data = "${file("JenkinsInstall.txt")}"
-    tags = {
-    Name = "JenkinsInstance"
-  }
 }
 
 resource "aws_lb_target_group" "Tg_East" {

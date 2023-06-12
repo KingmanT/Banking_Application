@@ -1,11 +1,11 @@
 variable "profile_creds" {
 type = string
-default = "TrystanLove474_15"
+default = "EB-user"
 description = "Specifies the profile to be used"
 }
 variable "key_pair" {
 type = string
-default = "scriptKey"
+default = "Ubuntu_EC2"
 description = "Specifies the key pair to be used"
 }
 variable "public_subnet_1_cidr_region1" {

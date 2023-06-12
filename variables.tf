@@ -1,8 +1,3 @@
-variable "profile_creds" {
-type = string
-default = "TrystanLove474_15"
-description = "Specifies the profile to be used"
-}
 variable "key_pair" {
 type = string
 default = "scriptKey"

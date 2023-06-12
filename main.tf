@@ -12,10 +12,12 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
+  profile = "EB-user"
 }
 provider "aws" {
   region = "us-west-1"
   alias = "West"
+  profile = "EB-user"
 }
 
 resource "aws_vpc" "Deployment-vpc_East" {

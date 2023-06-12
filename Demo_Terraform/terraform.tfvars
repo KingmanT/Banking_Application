@@ -1,5 +1,5 @@
 region       = "us-east-1"
-project_name = "Deployment_4"
+project_name = "Demo_Deployment"
 vpc_cidr     = "172.19.0.0/16"
 
 ami                 = "ami-08c40ec9ead489470"

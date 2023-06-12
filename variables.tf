@@ -1,6 +1,6 @@
 variable "key_pair" {
 type = string
-default = "scriptKey"
+default = "Ubuntu_EC2"
 description = "Specifies the key pair to be used"
 }
 variable "public_subnet_1_cidr_region1" {

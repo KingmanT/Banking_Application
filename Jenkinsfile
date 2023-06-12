@@ -16,7 +16,7 @@ pipeline {
     stage ('Test') {
       steps {
         sh '''#!/bin/bash
-        source test/bin/activate
+        echo "This is the test stage"
         ''' 
       }
     }

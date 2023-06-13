@@ -53,6 +53,26 @@ resource "aws_iam_role" "role" {
 EOF
 }
 
+data "aws_iam_policy_document" "cloudwatch_server_role"{
+  statement {
+    effect = "Allow"
+    actions = ["cloudwatch:PutMetricData",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeTags",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams",
+                "logs:DescribeLogGroups",
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup"]
+    resources = [ "*" ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [ "ssm:GetParameter" ]
+    resources = [ "arn:aws:ssm:*:*:parameter/AmazonCloudWatch-*" ]
+  }
+}
+
 # create security groups
 
 resource "aws_security_group" "web_ssh" {

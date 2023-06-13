@@ -4,12 +4,7 @@ pipeline {
     stage ('Build') {
       steps {
         sh '''#!/bin/bash
-        python3 -m venv test
-        source test/bin/activate
-        pip install pip --upgrade
-        pip install -r requirements.txt
-        export FLASK_APP=app
-        flask run &
+        echo "This is the build stage"
         '''
      }
    }
@@ -51,15 +46,6 @@ pipeline {
                         }
         }  
       }
-     stage('Destroy') {
-        steps {
-          withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('Demo_Terraform') {
-                              sh 'terraform destroy -auto-approve -var="aws_access_key=${aws_access_key}" -var="aws_secret_key=${aws_secret_key}"' 
-                            }
-                        }
-        }  
-      }
+
     }
   }

@@ -17,3 +17,7 @@ output "instance_name" {
 output "security_group_name" {
   value = var.security_group_name
 }
+
+output "iam_instance_profile" {
+  value = var.iam_instance_profile
+}

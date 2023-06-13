@@ -28,8 +28,7 @@ module "instance" {
   security_group_name = var.security_group_name
   subnet_id           = module.vpc.subnet_id
   vpc_id              = module.vpc.vpc_id
-  
-
+ 
 }
 
    

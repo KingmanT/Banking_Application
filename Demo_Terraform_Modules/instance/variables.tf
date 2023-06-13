@@ -5,3 +5,4 @@ variable "instance_name" {}
 variable "security_group_name" {}
 variable "subnet_id" {}
 variable "vpc_id" {}
+variable "iam_instance_profile" {}

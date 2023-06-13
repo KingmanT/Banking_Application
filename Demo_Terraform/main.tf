@@ -28,11 +28,8 @@ module "instance" {
   security_group_name = var.security_group_name
   subnet_id           = module.vpc.subnet_id
   vpc_id              = module.vpc.vpc_id
-   
-  resource "aws_iam_instance_profile" "ec2_profile" {
-    name = "ec2_profile"
-    role = aws_iam_role.role.name
-  }
+  
+
 }
 
     
@@ -47,4 +44,7 @@ resource "aws_iam_policy_attachment" "cloudwatch_attachment" {
   roles = [ aws_iam_role.role.name ]
   policy_arn = aws_iam_policy.cloudwatch_policy.arn
 }
-
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2_profile"
+  role = aws_iam_role.role.name
+}

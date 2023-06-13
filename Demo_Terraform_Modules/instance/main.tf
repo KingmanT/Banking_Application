@@ -32,6 +32,27 @@ resource "aws_iam_policy_attachment" "cloudwatch_attachment" {
   policy_arn = aws_iam_policy.cloudwatch_policy.arn
 }
 
+resource "aws_iam_role" "role" {
+  name = "Cloudwatch_role"
+  assume_role_policy = <<EOF
+  {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "ec2.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
 # create security groups
 
 resource "aws_security_group" "web_ssh" {

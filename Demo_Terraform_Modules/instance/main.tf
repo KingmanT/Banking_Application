@@ -20,6 +20,18 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   role = aws_iam_role.role.name
 }
 
+resource "aws_iam_policy" "cloudwatch_policy" {
+  name = "cloudwatch_policy"
+  description = "Policy to grant ec2 cloud watch permissions"
+  policy = data.aws_iam_policy_document.cloudwatch_server_role.json
+}
+
+resource "aws_iam_policy_attachment" "cloudwatch_attachment" {
+  name = "Cloudwatch_Attachment"
+  roles = [ aws_iam_role.role.name ]
+  policy_arn = aws_iam_policy.cloudwatch_policy.arn
+}
+
 # create security groups
 
 resource "aws_security_group" "web_ssh" {

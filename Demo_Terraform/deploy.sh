@@ -42,7 +42,13 @@
                 "cpu_usage_active"
                 ],
                 "metrics_collection_interval": 60
-            }
+            },
+            "net": {
+                "measurement": [
+                    "net_packets_recv"
+                ],
+                "metrics_collection_interval": 60
+                 }
         }
     }
 }' | jq . > /opt/aws/amazon-cloudwatch-agent/bin/config.json

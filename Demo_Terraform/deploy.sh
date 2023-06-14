@@ -5,7 +5,7 @@
   cd /opt/aws/amazon-cloudwatch-agent/bin
   sudo  echo '{
     "agent": {
-        "metrics_collection_interval": 60,
+        "metrics_collection_interval": 10,
         "run_as_user": "root"
     },
     "metrics": {
@@ -34,6 +34,12 @@
                 ],
                 "ignore_file_system_types": [
                     "sysfs", "devtmpfs"
+                ],
+                "metrics_collection_interval": 60
+            },
+            "cpu": {
+                "measurement": [
+                "cpu_usage_active"
                 ],
                 "metrics_collection_interval": 60
             }

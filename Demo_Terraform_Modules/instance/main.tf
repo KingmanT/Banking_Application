@@ -34,8 +34,8 @@ resource "aws_iam_policy_attachment" "cloudwatch_attachment" {
 
 resource "aws_iam_role" "role" {
   name = "Cloudwatch_role"
-  assume_role_policy =<<EOF
-  {
+  assume_role_policy = <<EOF
+{
   "Version": "2012-10-17",
   "Statement": [
     {
